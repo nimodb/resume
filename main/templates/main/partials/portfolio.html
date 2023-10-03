@@ -1,0 +1,66 @@
+{% load static %}
+<article class="portfolio" data-page="portfolio">
+  <header>
+    <h2 class="h2 article-title">Portfolio</h2>
+  </header>
+
+  <section class="projects">
+    <ul class="filter-list">
+      <li class="filter-item">
+        <button class="active" data-filter-btn>All</button>
+      </li>
+      {% for p in portfolios %} {% if p.is_active %}
+
+      <li class="filter-item">
+        <button data-filter-btn>{{p.category}}</button>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+
+    <div class="filter-select-box">
+      <button class="filter-select" data-select>
+        <div class="select-value" data-selecct-value>Select category</div>
+
+        <div class="select-icon">
+          <ion-icon name="chevron-down"></ion-icon>
+        </div>
+      </button>
+
+      <ul class="select-list">
+        <li class="select-item">
+          <button data-select-item>All</button>
+        </li>
+
+        {% for p in portfolios %} {% if p.is_active %}
+        <li class="select-item">
+          <button data-select-item>{{p.category}}</button>
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+    </div>
+
+    <ul class="project-list">
+      {% for p in portfolios %} {% if p.is_active %}
+      <li
+        class="project-item active"
+        data-filter-item
+        data-category="{{p.category|lower}}"
+      >
+        <a href="#">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="{{p.image.url}}" alt="fundo" loading="lazy" />
+          </figure>
+
+          <h3 class="project-title">{{p.name}}</h3>
+
+          <p class="project-category">{{p.category}}</p>
+        </a>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </section>
+</article>

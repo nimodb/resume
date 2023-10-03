@@ -1,0 +1,126 @@
+{% load static %}
+<article class="about active" data-page="about">
+  <header>
+    <h2 class="h2 article-title">About me</h2>
+  </header>
+
+  <section class="about-text">
+    <p>
+      Hello! I’m {{me.first_name|title}} {{me.last_name|title}}.
+      {{me.userprofile.bio|safe}}
+    </p>
+    <span id="more-text"> {{me.userprofile.moreBio|safe}} </span>
+
+    <button id="show-more" onclick="showMoreText()">Show more</button>
+  </section>
+
+  <!-- service -->
+  <section class="service">
+    <h3 class="h3 service-title">What i'm doing</h3>
+
+    <ul class="service-list">
+      {% for p in professions %} {% if p.is_active %}
+      <li class="service-item">
+        <div class="service-icon-box">
+          <img src="{{p.icon.url}}" alt="design icon" width="40" />
+        </div>
+
+        <div class="service-content-box">
+          <h4 class="h4 service-item-title">{{p.title}}</h4>
+
+          <p class="service-item-text">{{p.description}}</p>
+        </div>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </section>
+
+  <!-- testimonials -->
+  <section class="testimonials">
+    <h3 class="h3 testimonials-title">Testimonials</h3>
+
+    <ul class="testimonials-list has-scrollbar">
+      {% for t in testimonials %} {% if t.is_active %}
+      <li class="testimonials-item">
+        <div class="content-card" data-testimonials-item>
+          <figure class="testimonials-avatar-box">
+            <img
+              src="{{t.thumbnail.url}}"
+              alt="{{t.name}}"
+              width="60"
+              data-testimonials-avatar
+            />
+          </figure>
+
+          <h4 class="h4 testimonials-item-title" data-testimonials-title>
+            {{t.name}} - {{t.role}}
+            <time
+              class="testimonials-text"
+              ,
+              style="font-size: small"
+              datetime="{{t.timestamp}}"
+              >{{t.timestamp}}
+            </time>
+          </h4>
+
+          <div class="testimonials-text" data-testimonials-text>
+            <p>{{t.quote}}</p>
+          </div>
+        </div>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </section>
+
+  <!-- testimonials modal -->
+  <div class="modal-container" data-modal-container>
+    <div class="overlay" data-overlay></div>
+
+    <section class="testimonials-modal">
+      <button class="modal-close-btn" data-modal-close-btn>
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="modal-img-wrapper">
+        <figure class="modal-avatar-box">
+          <img
+            src="./assets/images/avatar-1.png"
+            alt="Daniel lewis"
+            width="80"
+            data-modal-img
+          />
+        </figure>
+
+        <img
+          src="{% static './assets/images/icon-quote.svg' %}"
+          alt="quote icon"
+        />
+      </div>
+
+      <div class="modal-content">
+        <h4 class="h3 modal-title" data-modal-title>Title</h4>
+
+        <div data-modal-text>
+          <p>Text</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- clients -->
+  {% if clients %}
+  <section class="clients">
+    <h3 class="h3 clients-title">Clients</h3>
+
+    <ul class="clients-list has-scrollbar">
+      {% for c in clients %} {% if c.is_active %}
+      <li class="clients-item">
+        <a href="#">
+          <img src="{{c.logo.url}}" alt="{{c.client}}" />
+        </a>
+      </li>
+      {% endif %}{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</article>

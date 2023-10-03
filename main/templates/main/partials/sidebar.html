@@ -1,0 +1,107 @@
+{% load static %}
+<aside class="sidebar" data-sidebar>
+  <div class="sidebar-info">
+    <figure class="avatar-box" style="border-radius: 75px 40px">
+      <img
+        src="{{me.userprofile.avatar.url}}"
+        alt="Richard hanrick"
+        width="80"
+        style="border-radius: 75px 40px"
+      />
+    </figure>
+
+    <div class="info-content">
+      <h1 class="name" title="{{me.first_name|title}} {{me.last_name|title}}">
+        {{me.first_name|title}} {{me.last_name|title}}
+      </h1>
+      {% if me.userprofile.title %}
+      <p class="title">{{me.userprofile.title}}</p>
+      {% endif %}
+    </div>
+
+    <button class="info_more-btn" data-sidebar-btn>
+      <span>Show Contacts</span>
+
+      <ion-icon name="chevron-down"></ion-icon>
+    </button>
+  </div>
+
+  <div class="sidebar-info_more">
+    <div class="separator"></div>
+
+    <ul class="contacts-list">
+      {% if me.userprofile.cv %}
+      <a href="{{me.userprofile.cv.url}}">
+        <button class="form-btn" type="submit">
+          <ion-icon name="download-outline"></ion-icon>
+          <span>Download Resume</span>
+        </button>
+      </a>
+      {% endif %} {% if me.email %}
+      <li class="contact-item">
+        <div class="icon-box">
+          <ion-icon name="mail-outline"></ion-icon>
+        </div>
+
+        <div class="contact-info">
+          <p class="contact-title">Email</p>
+
+          <a href="mailto:{{me.email}}" class="contact-link">{{me.email}}</a>
+        </div>
+      </li>
+      {% endif %} {% if me.userprofile.phone_number %}
+      <li class="contact-item">
+        <div class="icon-box">
+          <ion-icon name="phone-portrait-outline"></ion-icon>
+        </div>
+
+        <div class="contact-info">
+          <p class="contact-title">Phone</p>
+
+          <a href="tel:{{me.userprofile.phone}}" class="contact-link"
+            >{{ me.userprofile.phone_number }}</a
+          >
+        </div>
+      </li>
+      {% endif %} {% if me.userprofile.birthday %}
+      <li class="contact-item">
+        <div class="icon-box">
+          <ion-icon name="calendar-outline"></ion-icon>
+        </div>
+
+        <div class="contact-info">
+          <p class="contact-title">Birthday</p>
+
+          <time datetime="{{me.userprofile.birthday}}"
+            >{{me.userprofile.birthday}}</time
+          >
+        </div>
+      </li>
+      {% endif %} {% if me.userprofile.location %}
+      <li class="contact-item">
+        <div class="icon-box">
+          <ion-icon name="location-outline"></ion-icon>
+        </div>
+
+        <div class="contact-info">
+          <p class="contact-title">Location</p>
+
+          <address>{{me.userprofile.location}}</address>
+        </div>
+      </li>
+      {% endif %}
+    </ul>
+
+    <div class="separator"></div>
+
+    <ul class="social-list" style="margin-top: 40px">
+      {% for social in me.userprofile.socialMedia.all %}
+      <li class="social-item">
+        <a href="{{social.url}}" class="social-link">
+          <ion-icon name="{{social.ion_icon}}"></ion-icon>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</aside>

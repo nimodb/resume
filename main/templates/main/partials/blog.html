@@ -1,0 +1,39 @@
+{% load static %}
+<article class="blog" data-page="blog">
+  <header>
+    <h2 class="h2 article-title">Blog</h2>
+  </header>
+
+  <section class="blog-posts">
+    <ul class="blog-posts-list">
+      {% for b in blogs %} {% if b.is_active %}
+      <li class="blog-post-item">
+        <a href="#">
+          <figure class="blog-banner-box">
+            <img src="{{b.image.url}}" alt="{{b.name}}" loading="lazy" />
+          </figure>
+
+          <div class="blog-content">
+            <div>
+              <h3 class="h3 blog-item-title">test</h3>
+            </div>
+            <div class="blog-meta">
+              <ion-icon style="color: #ffda6b" name="pencil-outline"></ion-icon>
+              <p class="blog-category">{{b.author}}</p>
+            </div>
+            <div class="blog-meta">
+              <p class="blog-category">Design</p>
+
+              <span class="dot"></span>
+
+              <time datetime="{{blog.timestamp}}">{{b.timestamp}}</time>
+            </div>
+
+            <p class="blog-text">{{b.description}}</p>
+          </div>
+        </a>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </section>
+</article>

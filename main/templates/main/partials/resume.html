@@ -1,0 +1,125 @@
+{% load static %}
+<article class="resume" data-page="resume">
+  <header>
+    <h2 class="h2 article-title">Resume</h2>
+  </header>
+
+  <!-- Education -->
+  <section class="timeline">
+    <div class="title-wrapper">
+      <div class="icon-box">
+        <ion-icon name="book-outline"></ion-icon>
+      </div>
+
+      <h3 class="h3">Education</h3>
+    </div>
+
+    <ol class="timeline-list">
+      {% for education in educations %} {% if education.is_active %}
+      <li class="timeline-item">
+        <div class="title-wrapper">
+          <img src="{{education.image.url}}" alt="design icon" width="40" />
+        </div>
+        <h4 class="h4 timeline-item-title">{{education.title}}</h4>
+        <span>{{education.year}}</span>
+        <p class="timeline-text">{{education.description}}</p>
+      </li>
+      {% endif %} {% endfor %}
+    </ol>
+  </section>
+
+  <!-- Experience -->
+  <section class="timeline">
+    <div class="title-wrapper">
+      <div class="icon-box">
+        <ion-icon name="book-outline"></ion-icon>
+      </div>
+
+      <h3 class="h3">Experience</h3>
+    </div>
+
+    <ol class="timeline-list">
+      {% for experience in experiences %} {% if experience.is_active %}
+      <li class="timeline-item">
+        <div class="title-wrapper">
+          <img src="{{experience.image.url}}" alt="design icon" width="40" />
+        </div>
+        <h4 class="h4 timeline-item-title">{{experience.title}}</h4>
+        <span>{{experience.year}}</span>
+        <p class="timeline-text">{{experience.description}}</p>
+      </li>
+      {% endif %} {% endfor %}
+    </ol>
+  </section>
+
+  <!-- Certificate -->
+  <section class="testimonials">
+    <h3 class="h3 testimonials-title">Certificates</h3>
+
+    <ul class="testimonials-list has-scrollbar">
+      {% for c in certificates %} {% if c.is_active %}
+      <li class="testimonials-item">
+        <div class="content-card" data-certificates-item>
+          <figure class="testimonials-avatar-box">
+            <img
+              src="{{c.thumbnail.url}}"
+              alt="{{t.name}}"
+              width="60"
+              data-certificates-avatar
+            />
+          </figure>
+
+          <h4 class="h4 testimonials-item-title" data-certificates-title>
+            {{c.title}}
+          </h4>
+
+          <div class="blog-meta">
+            <p class="blog-category">{{c.creator}}</p>
+
+            <span class="dot"></span>
+
+            <time datetime="{{t.date}}">{{c.date}}</time>
+          </div>
+
+          <div class="testimonials-text" data-certificates-text>
+            <p>{{c.description}}</p>
+          </div>
+        </div>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </section>
+
+  <!-- Certificate modal -->
+
+  <!-- My skills -->
+    <h3 class="h3 skills-title">My skills</h3>
+
+    <ul class="skills-list content-card">
+      {% for s in me.userprofile.skills.all %} {% if s.is_active %}
+      <li class="skills-item">
+        <div class="title-wrapper">
+          <div class="blog-meta">
+            
+            <img src="{{s.image.url}}" alt="design icon" width="40" />
+            <!-- <ion-icon name="logo-python" style="color: #ffda6b"></ion-icon> -->
+
+            <h5 class="h5">{{s.name}}</h5>
+            
+            <span class="dot"></span>
+            
+            <data value="{{skill.score}}" class="h5">{{s.score}}%</data>
+          </div>
+        </div>
+
+        <div class="skill-progress-bg">
+          <div
+            class="skill-progress-fill"
+            style="width: {{s.score}}%"
+          ></div>
+        </div>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </section>
+</article>

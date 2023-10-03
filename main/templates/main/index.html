@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %} {% load static %}
+
+<!-- !SEO blocks -->
+<!-- Title -->
+{% block title %}Did Coding - Home{% endblock %}
+<!-- Description -->
+{% block description %}description{% endblock %}
+<!-- Keywords -->
+{% block keywords %}keywords{% endblock %}
+
+<!-- !CSS blocks -->
+{% block extend_header %} {% endblock %}
+
+<!-- !script blocks -->
+{% block extend_footer %} {% endblock %}
+
+<!-- !Content -->
+{% block content %}
+<main>
+  <!-- Sidebar -->
+  {% include 'main/partials/sidebar.html' %}
+
+  <!-- main-content -->
+  <div class="main-content">
+    <!-- Start Nav -->
+    {% include 'main/partials/nav.html' %}
+
+    <!-- About -->
+    {% include 'main/partials/about.html' %}
+
+    <!-- Resume -->
+    {% include 'main/partials/resume.html' %}
+
+    <!-- Portfolio -->
+    {% include 'main/partials/portfolio.html' %}
+
+    <!-- Blog -->
+    {% include 'main/partials/blog.html' %}
+
+    <!-- Contact -->
+    {% include 'main/partials/contact.html' %}
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+<footer style="text-align: center; margin: 25px">
+  <div class="footerCol">
+    <div class="container">
+      <div class="copyrightCol">
+        <!-- <p class="h5">
+          Copyright ©2021 All rights reserved. Designed by
+          <a href="https://jamesgrangerdesign.co.uk/" target="_blank"
+            >James Granger Design</a
+          >
+        </p> -->
+        <p class="h5">
+          Copyright &copy; 2019-
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          {{me.userprofile.surname}} All Rights Reserved
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

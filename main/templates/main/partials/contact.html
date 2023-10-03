@@ -1,0 +1,58 @@
+{% load static %}
+<article class="contact" data-page="contact">
+  <header>
+    <h2 class="h2 article-title">Contact</h2>
+  </header>
+
+  <section class="about-text">
+    <p>I like where this is headed.</p>
+    <p>Let's talk, type or text.</p>
+    <p>
+      You can fill out the form below or shoot me an email at:
+      <strong><u>{{me.email}}</u></strong> .
+    </p>
+  </section>
+
+  <section class="contact-form">
+    <h3 class="h3 form-title">Contact Form</h3>
+
+    <form method="POST" id="contactForm" action="/home/" class="form" data-form>
+      {% csrf_token %}
+      <div class="input-wrapper">
+        <input
+          type="text"
+          name="name"
+          class="form-input"
+          placeholder="Full name"
+          required
+          data-form-input
+        />
+        {{form.name}}
+
+        <input
+          type="email"
+          name="email"
+          class="form-input"
+          placeholder="Email address"
+          required
+          data-form-input
+        />
+        {{form.email}}
+      </div>
+
+      <textarea
+        name="message"
+        class="form-input"
+        placeholder="Your Message"
+        required
+        data-form-input
+      ></textarea>
+      {{form.message}}
+
+      <button class="form-btn" type="submit" disabled data-form-btn>
+        <ion-icon name="paper-plane"></ion-icon>
+        <span>Send Message</span>
+      </button>
+    </form>
+  </section>
+</article>

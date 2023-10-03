@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock %}</title>
+    <meta name="author" content="vCard - Personal Portfolio" />
+    <link rel="canonical" href="{{request.path}}" />
+    <link rel="home" href="{% url 'main:home' %}" />
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="{% static './assets/images/logo.ico' %}"
+      type="image/x-icon"
+    />
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    {% block extend_header %} {% endblock %}
+  </head>
+
+  <body>
+    <!-- Messages -->
+    {% include 'main/partials/messages.html' %}
+
+    <!-- Start Content -->
+    {% block content %}{% endblock %}
+
+    <!-- Start Footer -->
+    {% include 'main/partials/footer.html' %}
+
+    <!-- Script -->
+    <script src="{% static './assets/js/script.js' %}"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    {% block extend_footer %} {% endblock %}
+  </body>
+</html>
